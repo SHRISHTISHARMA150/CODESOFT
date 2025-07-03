@@ -83,9 +83,20 @@ class ATM {
     }
 }
 
- class ATM_INTERFACE {
+class ATM_INTERFACE {
     public static void main(String[] args) {
-        BankAccount userAccount = new BankAccount(1000.0); // Starting balance
+        Scanner scanner = new Scanner(System.in);
+        double initialBalance;
+
+        System.out.print("Enter initial balance: Rs. ");
+        initialBalance = scanner.nextDouble();
+
+        if (initialBalance < 0) {
+            System.out.println("Initial balance cannot be negative. Setting balance to Rs. 0.");
+            initialBalance = 0;
+        }
+
+        BankAccount userAccount = new BankAccount(initialBalance);
         ATM atm = new ATM(userAccount);
         atm.PT(); // Start ATM session
     }
